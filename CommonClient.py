@@ -472,6 +472,9 @@ class CommonContext:
 
     async def disconnect(self, allow_autoreconnect: bool = False):
         if not allow_autoreconnect:
+            self.finished_game = False
+            self.locations_checked = set()
+            self.locations_scouted = set()
             self.disconnected_intentionally = True
             if self.cancel_autoreconnect():
                 logger.info("Cancelled auto-reconnect.")
